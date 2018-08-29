@@ -8,6 +8,16 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Account {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @NotNull
+    @Min(value = 1)
+    private double amount;
+
+    private long userId;
+
 
     public long getId() {
         return id;
@@ -33,15 +43,6 @@ public class Account {
         this.userId = userId;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotNull
-    @Min(value = 1)
-    private double amount;
-
-    private long userId;
 
 
 }

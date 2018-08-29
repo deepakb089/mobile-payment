@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.demo.models;
 
 
 import javax.validation.constraints.NotNull;
@@ -8,6 +8,12 @@ public class Transfer {
 
     @NotNull
     private String fromPhone;
+
+    @NotNull
+    private  String toPhone;
+
+    @NotNull
+    private double amount;
 
     public String getFromPhone() {
         return fromPhone;
@@ -33,11 +39,7 @@ public class Transfer {
         this.amount = amount;
     }
 
-    @NotNull
-    private  String toPhone;
 
-    @NotNull
-    private double amount;
 
 
 }

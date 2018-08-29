@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.entities.Transfer;
+import com.example.demo.models.Transfer;
 import com.example.demo.exceptions.NotEnoughBalanceException;
 import com.example.demo.exceptions.UserNotExistsException;
 import com.example.demo.responses.*;

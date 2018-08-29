@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.entities.Deposit;
+import com.example.demo.models.Deposit;
 import com.example.demo.exceptions.UserNotExistsException;
 import com.example.demo.responses.RequestMalformedError;
 import com.example.demo.responses.Response;

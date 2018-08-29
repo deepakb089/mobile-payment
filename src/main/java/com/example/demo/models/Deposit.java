@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.demo.models;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
@@ -8,6 +8,9 @@ public class Deposit {
 
     @NotNull
     private String phone;
+
+    @NotNull
+    private double amount;
 
     public String getPhone() {
         return phone;
@@ -24,9 +27,5 @@ public class Deposit {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
-    @NotNull
-    private double amount;
-
 
 }
