@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.Transfer;
-import com.example.demo.exceptions.NotEnoughBalance;
+import com.example.demo.exceptions.NotEnoughBalanceException;
 import com.example.demo.exceptions.UserNotExistsException;
 import com.example.demo.responses.*;
 import com.example.demo.services.AccountService;
@@ -26,13 +26,13 @@ public class TransferController {
 
 
     @RequestMapping(value = "/transfer", method = RequestMethod.POST)
-    public ResponseEntity<Response> transfer(@Valid @RequestBody Transfer transfer) throws UserNotExistsException, NotEnoughBalance {
+    public ResponseEntity<Response> transfer(@Valid @RequestBody Transfer transfer) throws UserNotExistsException, NotEnoughBalanceException {
 
         if (!userServices.hasAccount(transfer.getFromPhone()) ||
                 !userServices.hasAccount(transfer.getToPhone())) {
             throw new UserNotExistsException();
         } else if (!accountService.isPositive(transfer)) {
-            throw new NotEnoughBalance();
+            throw new NotEnoughBalanceException();
         }
 
         accountService.transfer(transfer);
@@ -41,7 +41,7 @@ public class TransferController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
-        return new ResponseEntity<>(new RequestMalformed(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new RequestMalformedError(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserNotExistsException.class)
@@ -49,8 +49,8 @@ public class TransferController {
         return new ResponseEntity<>(new UserNotExistsError(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NotEnoughBalance.class)
-    public ResponseEntity<Response> handleNotEnoughBalance(NotEnoughBalance e) {
+    @ExceptionHandler(NotEnoughBalanceException.class)
+    public ResponseEntity<Response> handleNotEnoughBalance(NotEnoughBalanceException e) {
         return new ResponseEntity<>(new NotEnoughBalanceError(), HttpStatus.BAD_REQUEST);
     }
 

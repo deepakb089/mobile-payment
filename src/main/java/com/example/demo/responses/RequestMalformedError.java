@@ -1,11 +1,11 @@
 package com.example.demo.responses;
 
-public class RequestMalformed implements Response {
+public class RequestMalformedError implements Response {
 
     public String status;
     public String message;
 
-    public RequestMalformed() {
+    public RequestMalformedError() {
 
         this.status = "error";
         this.message = "Request malformed";

@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Deposit;
 import com.example.demo.exceptions.UserNotExistsException;
-import com.example.demo.responses.RequestMalformed;
+import com.example.demo.responses.RequestMalformedError;
 import com.example.demo.responses.Response;
 import com.example.demo.responses.Success;
 import com.example.demo.responses.UserNotExistsError;
@@ -38,7 +38,7 @@ public class DepositController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
-        return new ResponseEntity<>(new RequestMalformed(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new RequestMalformedError(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserNotExistsException.class)
